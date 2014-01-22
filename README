@@ -1,2 +1,34 @@
 Sublime plugin to find bad coding and correct it using regex to replace in all selected code.
 
+For installation:
+
+Linux:
+1) Copy or make symbolic link to the file plugin in ~/.config/sublime-text-2/Package/User
+ or simply run in terminal: 
+ ln -s replacer.py ~/.config/sublime-text-2/Package/User/replacer.py
+
+Windows 7/8:
+1) Copy the plugin file in "C:\Users\<username>\AppData\Roaming\Sublime Text 2\Packages\User" where <username> is your windows user
+
+Windows XP:
+1) Copy the plugin file in "C:\Users\<username>\AppData\Roaming\Sublime Text 2\Packages\User"
+
+OSX:
+1) Copy the plugin file in ~/Library/Application\ Support/Sublime\ Text\ 2/Packages/User
+
+
+2) Binding command or launch. Plugin can be launched at sublime console(go to View_>Show Console) as:
+*Remember that plugin works on your current selection (you can select all your code with command(ctrl in windows or linux)+a) or you can select manually what part of your code want to apply and then run:
+view.run_command('beautycode')
+
+Or you can keybind with your user keyboard config this can be done going to:
+Sublime menu->Preferences->Key Binding User
+and add the line:
+{ "keys": ["ctrl+4"], "command": "beautycode" }
+
+where ctrl+4 is your favorite key bind.
+
+
+
+Happy Coding :)
+
