@@ -24,8 +24,13 @@ class BeautycodeCommand( ReplacerCommand ) :
         beauty_map = [
             {
             # Pattern to find  like function(var) to function( var)
-             'pattern' : r"([\w+'\[])(?!\(\))\((?!\s+)",
+             'pattern' : r"([\w+'\[\(])(?!\(\))\((?!\s+)",
              'replacement' : r"\1( "
+            },
+            {
+            # Pattern to find  like function(var) to function( var)
+             'pattern' : r"\(([\w+$+\[+\(])",
+             'replacement' : r"( \1"
             },
             {
             # Pattern to find  like function(var) to function(var )
