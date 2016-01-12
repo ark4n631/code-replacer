@@ -48,7 +48,7 @@ class BeautycodeCommand( ReplacerCommand ) :
              'replacement' : r"= "
             },
             {
-            # This patter find like variable=2 or $myvar=1 and replaces to variable =2 and $myvar =1
+            # This pattern find like variable=2 or $myvar=1 and replaces to variable =2 and $myvar =1
              'pattern'     : r"([\)'\w+\]])=",
              'replacement' : r"\1 ="
             },
@@ -67,6 +67,16 @@ class BeautycodeCommand( ReplacerCommand ) :
             #this pattern find all like asd  =  dds (negation of a = b) or more spaces and replaces for only 1
              'pattern'      : r"(?!\s=\s)\s+=\s+",
              'replacement' : r" = "
+            },
+            {
+            # This pattern find like "variable":2 replaces to "variable" :2 and $myvar =1
+             'pattern'      : r"(\"|\'|\d+)\:",
+             'replacement' : r" \1 :"
+            },
+            {
+            # This pattern find like "variable":2 replaces to "variable" :2 and $myvar =1
+             'pattern'      : r"\:(\"|\'|\d+)",
+             'replacement' : r": \1"
             },
             {
             #this pattern find all like ($a,'n',asd,function(),$element) and add a space after the comma
