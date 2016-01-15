@@ -27,22 +27,22 @@ class BeautycodeCommand( ReplacerCommand ) :
         beauty_map = [
             {
                 # Pattern to find [var to [ var
-                'pattern' : r"\[(\w+|\"|'|\[)(?!\s+)(?!\])",
+                'pattern' : r"\[(\w+|\"|'|\[)(?!\s+)(?!\])(?!\d+)",
                 'replacement' : r"[ \1"
             },
             {
                 # Pattern to find var] to var ]
-                'pattern' : r"(\w+|\"|'|\])\](?!\s+)(?!\[)",
+                'pattern' : r"(\w+|\"|'|\])\](?!\s+)(?!\[)(?!\d+)",
                 'replacement' : r"\1 ]"
             },
             {
                 # Pattern to find (var to ( var
-                'pattern' : r"\((\w+|\"|'|\[)",
+                'pattern' : r"\((\w+|\"|'|\[|\{)",
                 'replacement' : r"( \1"
             },
             {
                 # Pattern to find  like function(var) to function(var )
-                'pattern' : r"([\w+'\$\]])(?!\(\))(?!\s+)\)",
+                'pattern' : r"(\w+|\"|'|\]|\})(?!\(\))(?!\s+)\)",
                 'replacement' : r"\1 )"
             },
             {
@@ -79,12 +79,22 @@ class BeautycodeCommand( ReplacerCommand ) :
             {
                 # This pattern find like "variable":2 replaces to "variable" :2 and $myvar =1
                 'pattern'      : r"(\"|\'|\d+|\w+)\:",
-                'replacement' : r" \1 :"
+                'replacement' : r"\1 :"
             },
             {
                 # This pattern find like "variable":2 replaces to "variable" :2 and $myvar =1
                 'pattern'      : r"\:(\"|\'|\d+|\w+)",
                 'replacement' : r": \1"
+            },
+            {
+                # This pattern find like a+b or "a"+"b" to a +b or "a" +"b"
+                'pattern'      : r"(?!\+)(?!\=)(\"|'|\d+|\w+|\[|\]|\{|\}|\(|\))\+",
+                'replacement' : r"\1 +"
+            },
+            {
+                # This pattern find like a+b or "a"+"b" to a+ b or "a"+ "b"
+                'pattern'      : r"\+(?!\+)(?!\=)(\"|'|\d+|\w+|\[|\]|\{|\}|\(|\))",
+                'replacement' : r"+ \1"
             },
             {
                 # this pattern find all like ($a,'n',asd,function(),$element) and add a space after the comma
